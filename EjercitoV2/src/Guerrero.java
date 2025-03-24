@@ -1,6 +1,9 @@
 public class Guerrero extends Personaje{
 
     private String codigo;
+    private int alcance;
+    private int movimiento;
+    private int fuerza;
 
     public Guerrero() {
         super(20, 1, 5, 5);

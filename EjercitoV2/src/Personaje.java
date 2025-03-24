@@ -12,23 +12,24 @@ public abstract class Personaje {
         Random num = new Random();
         this.codigo++;
         this.vida = vida;
+        this.alcance = alcance;
+        this.movimiento = movimiento;
+        this.fuerza = fuerza;
         this.posicion = num.nextInt(20) + 1;
     }
 
-    public int simularAtaque(){
+    public int simularAtaque() {
         return getFuerza();
     }
 
-    public void recibirAtaque(int puntos){
-        if (this.vida > 0){
-            this.vida = this.vida - puntos;
+    public void recibirAtaque(int puntos) {
+        this.vida = this.vida - puntos;
 
-            if (this.vida < 0){
-                this.vida = 0;
-            }
-        }else{
+        if (this.vida < 0) {
             this.vida = 0;
+            System.out.println("El personaje con código: " + codigo + " ha muerto...");
         }
+
     }
 
     public static int getCodigo() {

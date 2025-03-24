@@ -2,6 +2,9 @@ public class Mago extends Personaje{
 
     private String codigo;
     private int magia;
+    private int alcance;
+    private int movimiento;
+    private int fuerza;
 
     public Mago() {
         super(10, 5, 3, 3);
