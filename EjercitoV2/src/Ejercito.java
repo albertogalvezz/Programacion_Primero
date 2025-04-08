@@ -30,6 +30,7 @@ public class Ejercito {
     public void realizarAtaque(Ejercito enemigo){
         for (int i = 0; i < ejercito.length; i++) {
             int enemigoAleatorio = (int) (Math.random()*enemigo.tamanyoEjercito());
+            System.out.println(ejercito);
             enemigo.obtenerPersonaje(enemigoAleatorio).recibirAtaque(ejercito[i].getFuerza());
             System.out.println("El enemigo " + enemigoAleatorio + " ha recibido un ataque de " + ejercito[i].getFuerza()+ " de fuerza");
         }
