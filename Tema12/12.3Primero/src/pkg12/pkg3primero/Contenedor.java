@@ -5,6 +5,7 @@
 package pkg12.pkg3primero;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  *
@@ -33,6 +34,10 @@ public class Contenedor<T> implements Pila<T> {
     }
 
     public T extraerDelPrincipio() {
+        if (tabla.length == 0) {
+            return null;
+        }
+
         T resultado = tabla[0];
         T nuevaTabla[] = Arrays.copyOf(tabla, tabla.length - 1);
         System.arraycopy(tabla, 1, nuevaTabla, 0, tabla.length - 1);
@@ -69,16 +74,29 @@ public class Contenedor<T> implements Pila<T> {
 
     public static void main(String[] args) {
 
-        Integer lista[] = {1, 2, 3, 4, 5};
-        Contenedor c = new Contenedor(lista);
+        Pila<Integer> p = new Contenedor(new Integer[0]);
+        Scanner sc = new Scanner(System.in);
+        Integer resultado = 0;
 
-        System.out.println(c + "\n");
+        do {
+            System.out.print("Introduce un número entero: ");
+            resultado = sc.nextInt();
 
-        c.desapilar();
-        c.desapilar();
-        c.apilar(10);
+            if (resultado != -1) {
+                p.apilar(resultado);
+            }
 
-        System.out.println(c);
+        } while (resultado != -1);
+
+        System.out.println("\n"+ "Desapilamos: ");
+        Integer num = p.desapilar();
+
+        while (num != null) {
+            System.out.println(num + " ");
+            num = p.desapilar();
+        }
+        System.out.println("");
+
     }
 
 }
