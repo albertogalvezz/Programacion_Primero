@@ -8,14 +8,11 @@ import java.util.Scanner;
  */
 public class Temperaturas {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         TemperaturasMaximas t = new TemperaturasMaximas();
         int opcion;
-        String mes, temperatura;
+        String mes;
 
         do {
             System.out.println("""
@@ -37,7 +34,7 @@ public class Temperaturas {
                     System.out.print("Introduce un mes: ");
                     mes = sc.next();
                     System.out.print("Introduce su temperatura: ");
-                    temperatura = sc.next();
+                    opcion = sc.nextInt();
 
                     t.introducirTemperatura(mes, opcion);
                 }
@@ -50,7 +47,10 @@ public class Temperaturas {
                     System.out.println("Meses introducidos: " + t.meses());
                 }
                 case 4 -> {
-
+                    System.out.print("Introduce la temperatura a tener en cuenta: ");
+                    opcion = sc.nextInt();
+                  
+                    System.out.println(t.mesesTemperaturaMayor(opcion));
                 }
                 case 5 -> {
                     System.out.println("Datos: " + t.datosTemperaturas());
