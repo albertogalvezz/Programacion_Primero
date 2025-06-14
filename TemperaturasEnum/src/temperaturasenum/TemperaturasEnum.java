@@ -1,4 +1,4 @@
-package temperaturas;
+package temperaturasenum;
 
 import java.util.Scanner;
 
@@ -6,13 +6,14 @@ import java.util.Scanner;
  *
  * @author Alberto
  */
-public class Temperaturas {
+public class TemperaturasEnum {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         TemperaturasMaximas t = new TemperaturasMaximas();
         int opcion;
         String mes;
+        MesesEnum mesEnum;
 
         do {
             System.out.println("""
@@ -32,16 +33,27 @@ public class Temperaturas {
             switch (opcion) {
                 case 1 -> {
                     System.out.print("Introduce un mes: ");
-                    mes = sc.next();
+                    mes = sc.next().toUpperCase();
                     System.out.print("Introduce su temperatura: ");
                     opcion = sc.nextInt();
 
-                    t.introducirTemperatura(mes, opcion);
+                    try {
+                        mesEnum = MesesEnum.valueOf(mes);
+                        t.introducirTemperatura(mesEnum, opcion);
+                    } catch (IllegalArgumentException e) {
+                        System.err.println("Mes inválido. Usa nombres como ENERO, FEBRERO, etc.");
+                    }
                 }
                 case 2 -> {
                     System.out.print("Introduce el mes a eliminar: ");
-                    mes = sc.next();
-                    t.eliminarMes(mes);
+                    mes = sc.next().toUpperCase();
+                    
+                    try {
+                        mesEnum = MesesEnum.valueOf(mes);
+                        t.eliminarMes(mesEnum);
+                    } catch (IllegalArgumentException e) {
+                        System.err.println("Mes inválido. Usa nombres como ENERO, FEBRERO, etc.");
+                    }
                 }
                 case 3 -> {
                     System.out.println("Meses introducidos: " + t.meses());
@@ -49,14 +61,14 @@ public class Temperaturas {
                 case 4 -> {
                     System.out.print("Introduce la temperatura a tener en cuenta: ");
                     opcion = sc.nextInt();
-                  
+
                     System.out.println(t.mesesTemperaturaMayor(opcion));
                 }
                 case 5 -> {
                     System.out.println("Datos: " + t.datosTemperaturas());
                 }
                 case 6 -> {
-                    
+
                 }
                 default -> {
                     System.out.println("La opción introducida no es válida");
